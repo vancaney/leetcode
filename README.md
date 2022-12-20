@@ -1,3 +1,1 @@
-# leetcode
-Config files for my GitHub profile.
-#leetcode题目
+leetcode题目
