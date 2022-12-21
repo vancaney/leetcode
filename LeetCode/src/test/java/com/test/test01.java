@@ -1,5 +1,6 @@
 //package com.test;
 //
+//import com.why.leetcode.pojo.ListNode;
 //import org.junit.Test;
 //
 //import java.util.ArrayList;
@@ -10,26 +11,49 @@
 //public class test01 {
 //    @Test
 //    public void test() {
-//        int[] nums = {1,2,3};
-//        System.out.println(permute(nums));
+//        ListNode[] listNodes = new ListNode[]{new ListNode(1 , new ListNode(4,new ListNode(5))),
+//                                                new ListNode(1,new ListNode(3,new ListNode(4))),
+//                                                new ListNode(2,new ListNode(6))};
+//        mergeKLists(listNodes);
 //    }
-//    List<List<Integer>> res = new ArrayList<>();
-//    List<Integer> curr = new ArrayList<>();
-//    public List<List<Integer>> permute(int[] nums) {
-//        dfs(nums , 0);
-//        return res;
+//    public ListNode mergeKLists(ListNode[] lists) {
+//        ListNode dummy = new ListNode(0);
+//        ListNode d = dummy;
+//        for(int i = 0 ; i < lists.length ; i++){
+//            d.next = mergeLists(d , lists[i]);
+//            d = d.next;
+//        }
+//        return dummy.next;
 //    }
 //
-//    public void dfs(int[] nums , int index){
-//        if(curr.size() == nums.length){
-//            res.add(new ArrayList<Integer>(curr));
-//            return;
+//    public ListNode mergeLists(ListNode dummy , ListNode list){
+//        ListNode res = new ListNode(0);
+//        ListNode d = dummy , l = list , r = res;
+//        while(d != null && l != null){
+//            while(d != null && d.val < l.val){
+//                r.next = d;
+//                d = d.next;
+//            }
+//            if(d == null){
+//                r.next = l;
+//                break;
+//            }
+//            while(l != null && d.val > l.val){
+//                r.next = l;
+//                l = l.next;
+//            }
+//            if(l == null){
+//                r.next = d;
+//                break;
+//            }
+//            if(r != null)
+//                r = r.next;
+//            else
+//                break;
 //        }
-//        for(int i = index ; i < nums.length ; i++){
-//            if(curr.contains(nums[i])) continue;
-//            curr.add(nums[i]);
-//            dfs(nums , i);
-//            curr.remove(curr.size() - 1);
-//        }
+//
+//        return res.next;
 //    }
+//
+//
 //}

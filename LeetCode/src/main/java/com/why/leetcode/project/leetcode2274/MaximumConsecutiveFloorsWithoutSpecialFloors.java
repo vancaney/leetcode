@@ -33,15 +33,14 @@ public class MaximumConsecutiveFloorsWithoutSpecialFloors {
         int ans = 0;
         int n = special.length;
         Arrays.sort(special);
-        ans = Math.max(ans, special[0] - bottom);
-        ans = Math.max(ans, top - special[n - 1]);
+        ans = Math.max(special[0] - bottom , top - special[n - 1]);
         /**
          * 28
          * 50
          * [35,48]
          */
-        for (int i = 0; i < special.length - 1; i++) {
-            ans = Math.max(ans, special[i + 1] - special[i] - 1);
+        for (int i = 0 ; i < n - 1 ; i++) {
+            ans = Math.max(ans , special[i + 1] - special[i] - 1);
         }
         System.out.println(ans);
     }
