@@ -32,40 +32,35 @@ public class ParsingABooleanExpression {
     }
 
     public static boolean parseBoolExpr(String expression) {
-        Deque<Character> deque = new ArrayDeque<>();
-        int len = expression.length();
-        for (int i = 0; i < len; i++) {
+        Deque<Character> stack = new ArrayDeque<>();
+        for(int i = 0 ; i < expression.length() ; i++){
             char c = expression.charAt(i);
-            if(c == ','){
+            if(c == ',')
                 continue;
-            } else if (c != ')') {
-                deque.push(c);
-            }else{
+            else if(c != ')')
+                stack.push(c);
+            else{
                 int t = 0 , f = 0;
-                while(deque.peek() != '('){
-                    char val = deque.pop();
-                    if(val == 't'){
-                        t++;
-                    }else{
-                        f++;
-                    }
+                while(stack.peek() != '('){
+                    char ch = stack.pop();
+                    if(ch == 't') t++;
+                    else f++;
                 }
-                deque.pop();
-                Character op = deque.pop();
-                switch (op){
+                stack.pop();
+                char op = stack.pop();
+                switch(op){
                     case '!':
-                        deque.push(t > 0 ? 'f' : 't');
-                        break;
-                    case '&':
-                        deque.push(f > 0 ? 't' : 'f');
+                        stack.push(t > 0 ? 'f' : 't');
                         break;
                     case '|':
-                        deque.push(t > 0 ? 't' : 'f');
+                        stack.push(t > 0 ? 't' : 'f');
                         break;
-                    default:
+                    case '&':
+                        stack.push(f > 0 ? 'f' : 't');
+                        break;
                 }
             }
         }
-        return deque.pop() == 't';
+        return stack.pop() == 't';
     }
 }
