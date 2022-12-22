@@ -1,6 +1,8 @@
 package com.why.leetcode.project.leetcode1779;
 
 
+import com.why.leetcode.project.leetcode66.PlusOne;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -39,7 +41,21 @@ public class NearestValidPoint {
             }
             idx++;
         }
+        return res;
+    }
 
+    public int nearestValidPoint1(int x, int y, int[][] points) {
+        int res = -1 , min = Integer.MAX_VALUE;
+        for (int i = 0; i < points.length; i++) {
+            int x1 = points[i][0] , y1 = points[i][1];
+            if(x == x1 || y == y1){
+                int temp = Math.abs(x - x1) + Math.abs(y - y1);
+                if(temp < min){
+                    min = temp;
+                    res = i;
+                }
+            }
+        }
         return res;
     }
 }
