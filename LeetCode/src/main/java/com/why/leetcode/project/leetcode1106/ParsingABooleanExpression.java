@@ -4,7 +4,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 /**
- * 给你一个以字符串形式表述的 布尔表达式（boolean） expression，返回该式的运算结果。
+ * 给你一个以字符串形式表述的布尔表达式（boolean） expression，返回该式的运算结果。
  * 有效的表达式需遵循以下约定：
  * "t"，运算结果为 True
  * "f"，运算结果为 False
