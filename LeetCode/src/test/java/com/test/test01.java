@@ -3,57 +3,39 @@
 //import com.why.leetcode.pojo.ListNode;
 //import org.junit.Test;
 //
-//import java.util.ArrayList;
-//import java.util.HashSet;
-//import java.util.List;
-//import java.util.Set;
+//import java.util.*;
+//import java.util.function.BiConsumer;
+//import java.util.function.BiFunction;
 //
 //public class test01 {
 //    @Test
 //    public void test() {
-//        ListNode[] listNodes = new ListNode[]{new ListNode(1 , new ListNode(4,new ListNode(5))),
-//                                                new ListNode(1,new ListNode(3,new ListNode(4))),
-//                                                new ListNode(2,new ListNode(6))};
-//        mergeKLists(listNodes);
+//        int[] nums1 = {1,1,3,2} , nums2 = {2,3}, nums3 = {3};
+//        twoOutOfThree(nums1 , nums2 , nums3);
 //    }
-//    public ListNode mergeKLists(ListNode[] lists) {
-//        ListNode dummy = new ListNode(0);
-//        ListNode d = dummy;
-//        for(int i = 0 ; i < lists.length ; i++){
-//            d.next = mergeLists(d , lists[i]);
-//            d = d.next;
+//
+//    public List<Integer> twoOutOfThree(int[] nums1, int[] nums2, int[] nums3) {
+//        List<Integer> result = new ArrayList<>();
+//        Map<Integer , Integer> map1 = new HashMap<>();
+//        for(int n : nums1)
+//            map1.put(n , 1);
+//
+//        Map<Integer , Integer> map2 = new HashMap<>();
+//        for(int n : nums2)
+//            map2.put(n , 1);
+//
+//        Map<Integer , Integer> map3 = new HashMap<>();
+//        for(int n : nums3)
+//            map3.put(n , 1);
+//
+//        map2.forEach((k, v) -> map1.merge(k, v, Integer::sum));
+//        map3.forEach((k, v) -> map1.merge(k, v, Integer::sum));
+//
+//        for (Map.Entry<Integer, Integer> entry : map1.entrySet()) {
+//            if(entry.getValue() >= 2)
+//                result.add(entry.getKey());
 //        }
-//        return dummy.next;
+//        return result;
 //    }
-//
-//    public ListNode mergeLists(ListNode dummy , ListNode list){
-//        ListNode res = new ListNode(0);
-//        ListNode d = dummy , l = list , r = res;
-//        while(d != null && l != null){
-//            while(d != null && d.val < l.val){
-//                r.next = d;
-//                d = d.next;
-//            }
-//            if(d == null){
-//                r.next = l;
-//                break;
-//            }
-//            while(l != null && d.val > l.val){
-//                r.next = l;
-//                l = l.next;
-//            }
-//            if(l == null){
-//                r.next = d;
-//                break;
-//            }
-//            if(r != null)
-//                r = r.next;
-//            else
-//                break;
-//        }
-//
-//        return res.next;
-//    }
-//
 //
 //}
