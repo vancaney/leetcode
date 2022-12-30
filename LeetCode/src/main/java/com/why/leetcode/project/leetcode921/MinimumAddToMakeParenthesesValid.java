@@ -17,17 +17,20 @@ package com.why.leetcode.project.leetcode921;
  * 输出：3
  */
 public class MinimumAddToMakeParenthesesValid {
+    public static void main(String[] args) {
+        String s = "()))((";
+    }
 
-    String s = "())";
-    public void minAddToMakeValid() {
+    public int minAddToMakeValid(String s) {
         int left = 0 , right = 0;
         for(int i = 0 ; i < s.length() ; i++){
-            if(s.charAt(i) == '(') left++;
-            else {
+            char c = s.charAt(i);
+            if(c == '(') left++;
+            else{
                 if(left != 0) left--;
                 else right++;
             }
         }
-        System.out.println(left+right);
+        return left + right;
     }
 }

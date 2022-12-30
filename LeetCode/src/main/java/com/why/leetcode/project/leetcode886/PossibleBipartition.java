@@ -1,9 +1,10 @@
-package com.leetcode.project.leetcode886;
+package com.why.leetcode.project.leetcode886;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.BiConsumer;
 
 /**
  * 给定一组n人（编号为1, 2, ..., n），我们想把每个人分进任意大小的两组。每个人都可能不喜欢其他人，那么他们不应该属于同一组。
@@ -22,8 +23,8 @@ import java.util.Set;
 public class PossibleBipartition {
 
     public static void main(String[] args) {
-        int[][] res = {{1,2},{1,3},{2,3}};
-        System.err.println(possibleBipartition(3, res));
+        int[][] res = {{1,2},{1,3},{2,4}};
+        System.err.println(possibleBipartition(4, res));
     }
 
     public static boolean possibleBipartition(int n, int[][] dislikes) {
@@ -39,7 +40,7 @@ public class PossibleBipartition {
             map.get(dislikes[i][0]).add(dislikes[i][1]);
             map.get(dislikes[i][1]).add(dislikes[i][0]);
         }
-
+        //map.forEach((k, v) -> System.out.println(k + " " + v));
         for(int i = 1 ; i <= n ; i++){
             //先判断i是否被染色，如果没有染色就对i进行染色;如果已经染色就跳过。
 //            等价于:
@@ -59,7 +60,7 @@ public class PossibleBipartition {
             return colors[node] == color;
         }
         colors[node] = color;
-        if(map.get(node) == null) return true;
+        if(map.get(node) == null) return true; //n = 1 , dislikes = [];
         for(int num : map.get(node)){
             if(!dfs(colors , num , -color , map))
                 return false;
