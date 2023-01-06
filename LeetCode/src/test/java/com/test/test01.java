@@ -16,28 +16,30 @@
 //public class test01 {
 //    @Test
 //    public void test() {
-//        String s = "4 5 11 26";
-//        System.err.println(areNumbersAscending(s));
+//        int s = 30;
+//        System.err.println(countEven(s));
 //    }
 //
-//    public boolean areNumbersAscending(String s) {
-//        int n = 0 , j = -1;
-//        for(int i = 0 ; i < s.length() - 1 ; i++){
-//            char c = s.charAt(i);
-//            if(Character.isDigit(c)){
-//                n += c - '0';
-//                if(Character.isDigit(s.charAt(i + 1)))
-//                    n *= 10;
-//                else{
-//                    if(j < n){
-//                        j = n;
-//                        n = 0;
-//                    }
-//                }
-//            }else
-//                continue;
+//    public int countEven(int num) {
+//        int res = 0;
+//        for(int i = 1 ; i <= num ;i++){
+//            if(getsum(i)) {
+//                System.out.println(i);
+//                res++;
+//            }
+//            else continue;
 //        }
-//        return j == n;
+//        return res;
+//    }
+//
+//    public boolean getsum(int n){
+//        int i = n , temp = 0 , ans = 0;
+//        while(i > 0){
+//            temp = i % 10;;
+//            ans += temp;
+//            i /= 10;
+//        }
+//        return temp % 2 == 0;
 //    }
 //
 //}
