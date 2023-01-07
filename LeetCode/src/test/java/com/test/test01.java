@@ -1,45 +1,50 @@
-//package com.test;
-//
-//import com.why.leetcode.pojo.ListNode;
-//import org.junit.Test;
-//
-//import java.io.File;
-//import java.io.IOException;
-//import java.nio.file.Files;
-//import java.nio.file.Path;
-//import java.nio.file.Paths;
-//import java.util.*;
-//import java.util.function.BiConsumer;
-//import java.util.function.BiFunction;
-//import java.util.function.Consumer;
-//
-//public class test01 {
-//    @Test
-//    public void test() {
-//        int s = 30;
-//        System.err.println(countEven(s));
-//    }
-//
-//    public int countEven(int num) {
-//        int res = 0;
-//        for(int i = 1 ; i <= num ;i++){
-//            if(getsum(i)) {
-//                System.out.println(i);
-//                res++;
-//            }
-//            else continue;
-//        }
-//        return res;
-//    }
-//
-//    public boolean getsum(int n){
-//        int i = n , temp = 0 , ans = 0;
-//        while(i > 0){
-//            temp = i % 10;;
-//            ans += temp;
-//            i /= 10;
-//        }
-//        return temp % 2 == 0;
-//    }
-//
-//}
+package com.test;
+
+import com.why.leetcode.project.leetcode2180.CountIntegersWithEvenDigitSum;
+import org.junit.Test;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+public class test01 {
+
+    public Object getClassAnyMethod(Object obj , String methodName , Class<?> returnType , Object...args){
+        try {
+            Class<?> aClass = obj.getClass();
+            Method method = aClass.getDeclaredMethod(methodName, returnType);
+            return method.invoke(obj , args);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @Test
+    public void test() throws Exception {
+        minOperations(new int[]{8828,9581,49,9818,9974,9869,9991,10000,10000,10000,9999,9993,9904,8819,1231,6309} , 134365);
+    }
+
+    public int minOperations(int[] nums, int x) {
+        int target = 0;
+        for(int n : nums){
+            target += n;
+        }
+        System.out.println(target);
+        if(target < x) return -1;
+
+        int len = nums.length , l = 0 , r = len - 1 , res = 0;
+        while(l < r){
+            if(x == 0) break;
+            else if(x < 0) return -1;
+            if(nums[l] < nums[r] && nums[r] <= x){
+                x -= nums[r];
+                r--;
+                res++;
+            }else if(nums[l] > nums[r] && nums[l] <= x){
+                x -= nums[l];
+                l++;
+                res++;
+            }
+        }
+        return res;
+    }
+
+}

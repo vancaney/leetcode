@@ -15,12 +15,7 @@ import java.util.Arrays;
  * 解释：出现在 s 中的数字只包含 [1] 。没有第二大的数字。
  */
 public class SecondLargestDigitInAString {
-    public static void main(String[] args) {
-        String s = "dfa12321afd";
-        secondHighest(s);
-    }
-
-    public static int secondHighest(String s) {
+    public int secondHighest(String s) {
         char[] ch = s.toCharArray();
         Arrays.sort(ch);
 
